@@ -7,17 +7,31 @@ import { health } from "./controllers/healthController.js";
 
 const app = express();
 
+
+
 const allowedOrigins = [
   "http://localhost:5173",
-  process.env.FRONTEND_URL
-].filter(Boolean);
+  "https://wexa-ai-project-57o5.vercel.app"
+];
 
 app.use(
   cors({
-    origin: allowedOrigins
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      if (origin.endsWith(".vercel.app")) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true
   })
 );
-
 app.use(express.json());
 
 app.get("/", (req, res) => {
