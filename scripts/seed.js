@@ -37,7 +37,7 @@ const developers = [
     id: "dev-5",
     name: "Venky",
     email: "venky@gmail.com",
-    experience: "Fresher"
+    experience: "Mid-Level"
   }
 ];
 const skills = [
