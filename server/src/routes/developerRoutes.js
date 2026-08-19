@@ -1,0 +1,9 @@
+import express from "express";
+import { listDevelopers, getDeveloper } from "../controllers/developerController.js";
+
+const router = express.Router();
+
+router.get("/", listDevelopers);
+router.get("/:id", getDeveloper);
+
+export default router;
